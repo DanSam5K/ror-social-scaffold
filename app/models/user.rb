@@ -9,14 +9,13 @@ class User < ApplicationRecord
   has_many :posts
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+
   has_many :friendships
   has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
 
   # Helper methods
   def friends
-    friends_array = friendships.map { |friendship| friendship.friend if friendship.confirmed }
-    friends_array += inverse_friendships.map { |friendship| friendship.user if friendship.confirmed }
-    friends_array.compact
+    friendships.map { |friendship| friendship.friend if friendship.confirmed }.compact
   end
 
   # Users who have yet to confirmed friend requests
@@ -29,14 +28,8 @@ class User < ApplicationRecord
     inverse_friendships.map { |friendship| friendship.user unless friendship.confirmed }.compact
   end
 
-  def confirm_friend(user)
-    friendship = inverse_friendships.find { |friend| friend.user == user }
-    friendship.confirmed = true
-    friendship.save
-  end
-
-  def friend?(user)
-    friends.include?(user)
+  def accept_friendship(user_id)
+    request = inverse_friendships.where(user_id: user_id).where(confirmed: false).first
   end
 
   def decline_friendship(user_id)
