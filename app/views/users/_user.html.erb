@@ -3,6 +3,6 @@
   <span class="profile-link">
     <%= link_to 'See Profile',  user_path(user), class: 'profile-link' %>
 
-    <%= request_status(user) %>
+    <%= request_debug_assets? %>
   </span>
 </li>

@@ -1,7 +1,7 @@
 <section class="user-section">
   <h2><%= "Name: #{@user.name}" %></h2>
 
-  <%= request_status(@user)%>
+  <%= request_debug_assets? %> 
   
   <article class="timeline">
     <h3>Recent posts:</h3>
