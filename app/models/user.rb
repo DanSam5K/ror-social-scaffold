@@ -28,8 +28,10 @@ class User < ApplicationRecord
     inverse_friendships.map { |friendship| friendship.user unless friendship.confirmed }.compact
   end
 
-  def accept_friendship(user_id)
-    request = inverse_friendships.where(user_id: user_id).where(confirmed: false).first
+  def accept_friendship(_user_id)
+    request = inverse_friendships.find { |friendship| friendship.confirmed == false }
+    request.confirmed = true
+    request.save
   end
 
   def decline_friendship(user_id)

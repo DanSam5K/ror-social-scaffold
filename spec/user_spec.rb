@@ -72,16 +72,16 @@ RSpec.describe User, type: :model do
       expect(pending_requests).to be_an Array
     end
 
-    # it 'should return an array with status false for all containing object' do
-    #   login_as(current_user, scope: :user)
-    #   current_user.friendships.build(friend_id: user.id, confirmed: false).save
+    it 'should return an array with status false for all containing object' do
+      login_as(current_user, scope: :user)
+      current_user.friendships.build(friend_id: user.id, confirmed: false).save
 
-    #   pending_requests = current_user.pending_friends
-    #   request_statuses = pending_requests.map do |user|
-    #     user.inverse_friendships.where(user_id: current_user.id).pending_requests.first.confirmed
-    #   end.compact
-    #   expect(request_statuses.all?(false)).to be true
-    # end
+      pending_requests = current_user.pending_friends
+      request_statuses = pending_requests.map do |user|
+        user.inverse_friendships.where(user_id: current_user.id).pending_requests.first.confirmed
+      end.compact
+      expect(request_statuses.all?(false)).to be true
+    end
   end
 
   describe '#friends' do
@@ -123,17 +123,6 @@ RSpec.describe User, type: :model do
         user.friendships.where(friend_id: current_user).pending_requests.first.confirmed
       end.compact
       expect(request_statuses.all?(false)).to be true
-    end
-  end
-
-  describe '#confirm_friend' do
-    it 'should change friend request status to true' do
-      login_as(current_user, scope: :user)
-      user.friendships.build(friend_id: current_user.id, confirmed: false).save
-
-      current_user.confirm_friend(user)
-      expect(current_user.friends[0]).to eq user
-      expect(user.friends[0]).to eq current_user
     end
   end
 
