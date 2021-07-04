@@ -9,6 +9,8 @@ module UserHelper
 
       concat(link_to('Accept Request', "/users/#{user.id}/accept", class: 'profile-link'))
       link_to ' | Decline Request', "/users/#{user.id}/decline", class: 'profile-link'
+    else
+      link_to 'Friends', "/users/#{user.id}", class: 'profile-link'
     end
   end
 end

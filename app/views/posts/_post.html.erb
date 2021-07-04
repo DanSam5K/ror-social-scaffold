@@ -2,15 +2,15 @@
   <div>
     <% if current_user == post.user || current_user.friends.include?(post.user)%>
       <div class='post-attribution' >
-        <%= link_to post.user.name, user_path(post.user), class: 'post-author' %>
+      <%= link_to post.user.name, user_path(post.user), class: 'post-author' %>
+        </div>
+        <div class='post-liking'>
+          <span class='post-date'> <%= post.created_at.strftime("%Y/%m/%d") %> </span>
+          <%= like_or_dislike_btn(post) %>
+        </div>
       </div>
-      <div class='post-liking'>
-        <span class='post-date'> <%= post.created_at.strftime("%Y/%m/%d") %> </span>
-        <%= like_or_dislike_btn(post) %>
-      </div>
-
       <p class="post-content">
-       <%= post.content %>
+        <%= post.content %>
       </p>
 
       <div class='post-comments-section'>
@@ -21,6 +21,6 @@
           <%= form.submit 'Comment', class: 'btn btn-secondary' %>
         <% end %>
       </div>
-   <% end %>
-  </div>
+    <% end %>
+
 </li>
