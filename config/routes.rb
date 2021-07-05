@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-
-  root 'posts#index'
-
   devise_for :users
-
+  root 'posts#index'
+  get 'users/:id/request', to: 'users#request_friend'
+  get 'users/:id/accept', to: 'users#accept_friend'
+  get 'users/:id/decline', to: 'users#decline_friend'
   resources :users, only: [:index, :show]
   resources :posts, only: [:index, :create] do
     resources :comments, only: [:create]
