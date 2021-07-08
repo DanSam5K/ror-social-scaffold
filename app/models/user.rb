@@ -17,6 +17,9 @@ class User < ApplicationRecord
   has_many :confirmed_friendships, -> { where confirmed: true }, class_name: "Friendship"
   has_many :friends, through: :confirmed_friendships
 
+  has_many :pending_friendships, -> { where confirmed: false }, class_name: "Friendship", foreign_key: "user_id"
+  has_many :pending_friends, through: :pending_friendships, source: :friend
+
   # Helper methods
   def friends
     friendships.map { |friendship| friendship.friend if friendship.confirmed }.compact
