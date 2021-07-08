@@ -48,4 +48,8 @@ class User < ApplicationRecord
     request = inverse_friendships.where(user_id: user_id).where(confirmed: false).first
     request.destroy
   end
+
+  def friends_and_own_posts
+    Post.where(user: (self.friends.to_a << self))
+  end
 end
