@@ -3,7 +3,8 @@ class PostsController < ApplicationController
 
   def show
     @post = current_user.posts.all
-    @post = Post.where(current_user.confirmed == true).order('created_at DESC').paginate(page: params[:page], per_page: 20)
+    @post = Post.where(current_user.confirmed == true).order('created_at DESC').paginate(page: params[:page],
+                                                                                         per_page: 20)
     @user = User.all
   end
 
