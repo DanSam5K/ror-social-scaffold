@@ -9,7 +9,7 @@
 
 ## Live Demo
 
-TBA
+[Social-Media-App](https://pure-coast-64929.herokuapp.com)
 
 
 ## Getting Started
@@ -71,7 +71,11 @@ TBA
 
 ## Authors
 
-TBA
+👤 **Daniel Samuel**
+
+- GitHub: [@DanSam5K ](https://github.com/DanSam5K)
+- Twitter: [@_dan_sam](https://twitter.com/_dan_sam)
+- LinkedIn: [Daniel Samuel](https://www.linkedin.com/)
 
 ## 🤝 Contributing
 
