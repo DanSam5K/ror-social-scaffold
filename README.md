@@ -5,8 +5,10 @@
 ## Built With
 
 - Ruby v2.7.0
-- Ruby on Rails v5.2.4
-
+- Ruby on Rails
+- Bulma
+- Devise
+- Integration test Rspec & Capybara
 ## Live Demo
 
 [Social-Media-App](https://pure-coast-64929.herokuapp.com)
