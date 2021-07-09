@@ -1,13 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
 
-  def show
-    @post = current_user.posts.all
-    @post = Post.where(current_user.confirmed == true).order('created_at DESC').paginate(page: params[:page],
-                                                                                         per_page: 20)
-    @user = User.all
-  end
-
   def index
     @post = Post.new
     timeline_posts
@@ -27,7 +20,9 @@ class PostsController < ApplicationController
   private
 
   def timeline_posts
-    @timeline_posts ||= Post.all.ordered_by_most_recent.includes(:user)
+    @timeline_posts = Post.all.ordered_by_most_recent.select do |post|
+      current_user.friend?(post.user) or current_user == post.user
+    end
   end
 
   def post_params
