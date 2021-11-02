@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-# ruby '2.7.0'
-ruby '3.0.1'
+ruby '2.7.2'
+#ruby '3.0.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.1.3', '>= 6.1.3.2'
@@ -47,6 +47,11 @@ gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'devise'
+#Authentication and autorization and Serialization
+gem 'devise-jwt'
+gem 'fast_jsonapi'
+gem "figaro"
+gem 'rack-cors'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
